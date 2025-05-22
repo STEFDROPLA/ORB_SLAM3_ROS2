@@ -1,0 +1,18 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/stefano_99/Desktop/prova_container/ros2_ws/install/px4_msgs/local/lib/python3.10/dist-packages",
+        "/home/stefano_99/Desktop/prova_container/ros2_ws/install/camera_pub/lib/python3.10/site-packages",
+        "/home/stefano_99/ros2_ws/install/px4_msgs/local/lib/python3.10/dist-packages",
+        "/home/stefano_99/ros2_ws/install/drone_control/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/stefano_99/Desktop/prova_container/ros2_ws/install/px4_msgs/local/lib/python3.10/dist-packages",
+        "/home/stefano_99/Desktop/prova_container/ros2_ws/install/camera_pub/lib/python3.10/site-packages",
+        "/home/stefano_99/ros2_ws/install/px4_msgs/local/lib/python3.10/dist-packages",
+        "/home/stefano_99/ros2_ws/install/drone_control/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

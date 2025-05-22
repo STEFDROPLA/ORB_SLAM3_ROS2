@@ -1,8 +1,11 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.12)  # or higher
+cmake_policy(SET CMP0074 NEW)
 project(orbslam3)
 
+
+
 # You should set the PYTHONPATH to your own python site-packages path
-set(ENV{PYTHONPATH} "/opt/ros/foxy/lib/python3.8/site-packages/")
+set(ENV{PYTHONPATH} "/opt/ros/humble/lib/python3.10/site-packages/")
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules)
 
@@ -23,6 +26,17 @@ find_package(message_filters REQUIRED)
 find_package(Sophus REQUIRED)
 find_package(Pangolin REQUIRED)
 find_package(ORB_SLAM3 REQUIRED)
+find_package(OpenCV REQUIRED)
+find_package(OpenCV REQUIRED COMPONENTS core imgproc highgui calib3d)
+
+
+# if(NOT OpenCV_VERSION VERSION_EQUAL "4.2.0")
+#   message(FATAL_ERROR "This project requires OpenCV version 4.2.0, but found ${OpenCV_VERSION}")
+# endif()
+
+
+
+
 
 include_directories(
   include
@@ -53,11 +67,19 @@ add_executable(stereo
 ament_target_dependencies(stereo rclcpp sensor_msgs cv_bridge message_filters
 ORB_SLAM3 Pangolin)
 
+
+
+
 add_executable(stereo-inertial
   src/stereo-inertial/stereo-inertial.cpp
   src/stereo-inertial/stereo-inertial-node.cpp
 )
 ament_target_dependencies(stereo-inertial rclcpp sensor_msgs cv_bridge ORB_SLAM3 Pangolin)
+
+target_link_libraries(mono ${OpenCV_LIBS})
+target_link_libraries(rgbd ${OpenCV_LIBS})
+target_link_libraries(stereo ${OpenCV_LIBS})
+target_link_libraries(stereo-inertial ${OpenCV_LIBS})
 
 install(TARGETS mono rgbd stereo stereo-inertial
   DESTINATION lib/${PROJECT_NAME})
